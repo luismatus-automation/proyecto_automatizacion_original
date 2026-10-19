@@ -104,6 +104,18 @@ Feature: Ejercicios Practicos
     And ingreso al carrito de compras
     Then visualizo el producto "Samsung galaxy s6" en el carrito
 
+#Ejercicio 2 CA5
+
+  @ejercicio2_CA5
+  Scenario: Validar que se puede eliminar un producto del carrito
+    Given estoy en la web de "https://www.demoblaze.com/"
+    When ingreso a la categoria "Phones"
+    And selecciono el producto "Samsung galaxy s6"
+    And agrego el producto al carrito
+    And ingreso al carrito de compras
+    And elimino el producto "Samsung galaxy s6" del carrito
+    Then confirmo que el producto fue eliminado del carrito
+
 #Ejercicio 2  ----------------------------------------------------------------------------------------------------------
 
   @ejercicio2_CA2

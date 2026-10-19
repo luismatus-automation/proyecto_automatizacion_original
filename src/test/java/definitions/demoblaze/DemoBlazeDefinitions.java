@@ -22,6 +22,7 @@ import java.util.Map;
 public class DemoBlazeDefinitions {
 
     private final WebDriver driver = WebDriverManager.getDriver();
+    private WebElement filaProductoEliminada;
 
     @Then("valido que existe la categoria de {string}")
     public void valido_que_existe_la_categoria_de(String categoria) {
@@ -110,6 +111,21 @@ public class DemoBlazeDefinitions {
         String resultadoObtenido = CarritoCompras.getNombreProductoCarrito(driver).getText();
         Assert.assertEquals("El producto encontrado no corresponde", productoEsperado, resultadoObtenido);
 
+    }
+
+    @When("elimino el producto {string} del carrito")
+    public void elimino_el_producto_del_carrito(String producto) {
+
+        filaProductoEliminada = CarritoCompras.getFilaProductoCarrito(driver, producto);
+        CarritoCompras.getEliminarProducto(driver, producto).click();
+    }
+
+    @Then("confirmo que el producto fue eliminado del carrito")
+    public void confirmo_que_el_producto_fue_eliminado_del_carrito() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        boolean filaEliminada = wait.until(ExpectedConditions.stalenessOf(filaProductoEliminada));
+        Assert.assertTrue("La fila del producto todavía está presente en el carrito", filaEliminada);
     }
 
     // step definitions ejercicio2_CA2

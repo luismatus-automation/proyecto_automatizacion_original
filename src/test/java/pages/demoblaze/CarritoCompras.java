@@ -18,6 +18,16 @@ public class CarritoCompras {
         return FactoryWebElements.initWithXpath(driver, "//tbody[@id='tbodyid']//tr[@class='success']/td[2]");
     }
 
+    public static WebElement getEliminarProducto(WebDriver driver, String producto) {
+
+        return FactoryWebElements.initWithXpath(driver,"//tbody[@id='tbodyid']//tr[td[2][normalize-space()='" + producto + "']]//a[normalize-space()='Delete']");
+    }
+
+    public static WebElement getFilaProductoCarrito(WebDriver driver, String producto) {
+
+        return FactoryWebElements.initWithXpath(driver,"//tbody[@id='tbodyid']//tr[td[2][normalize-space()='" + producto + "']]");
+    }
+
     public static List<WebElement> getPreciosProductos(WebDriver driver) {
         return FactoryWebElements.initElementsWithXpath(driver, "//tbody[@id='tbodyid']/tr/td[3]");
     }

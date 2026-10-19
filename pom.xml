@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.26.0</version>
+            <version>4.50.0</version>
         </dependency>
         <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
