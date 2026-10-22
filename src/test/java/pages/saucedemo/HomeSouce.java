@@ -27,4 +27,16 @@ public class HomeSouce {
 
     }
 
+    public static WebElement getContainerInventario(WebDriver driver)
+    {
+
+        return FactoryWebElements.initWithXpath(driver,"//div[@class='inventory_container']");
+    }
+
+    public static WebElement getMensajeError(WebDriver driver, String mensaje)
+    {
+
+        return FactoryWebElements.initWithXpath(driver,"//h3[@data-test='error' and contains(text(), '"+mensaje+"')]");
+    }
+
 }

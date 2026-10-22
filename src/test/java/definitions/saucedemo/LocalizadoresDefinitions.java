@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import utils.AceptarAlerta;
 
 public class LocalizadoresDefinitions {
 
@@ -20,29 +19,34 @@ public class LocalizadoresDefinitions {
 
     }
     @When("ingreso el username {string}")
-    public void ingreso_el_username(String userName) throws InterruptedException {
+    public void ingreso_el_username(String userName) {
 
         HomeSouce.getInputUserName(driver).sendKeys(userName);
 
     }
     @When("ingreso el password {string}")
-    public void ingreso_el_password(String password) throws InterruptedException {
+    public void ingreso_el_password(String password) {
 
         HomeSouce.getInputPassword(driver).sendKeys(password);
 
     }
     @When("presiono el boton Login")
-    public void presiono_el_boton_login() throws InterruptedException {
+    public void presiono_el_boton_login() {
 
         HomeSouce.getButtonSubmit(driver).click();
 
     }
-    @Then("valido que me he logeado en el sitio de ejemplo")
-    public void valido_que_me_he_logeado_en_el_sitio_de_ejemplo() throws InterruptedException {
+    @Then("valido que me he logeado en el sitio correctamente")
+    public void valido_que_me_he_logeado_en_el_sitio_correctamente() {
 
-        Thread.sleep(3000);
-        Assert.assertTrue("No se ha realizado el login", true);
+        Assert.assertTrue("No se mostró el inventario después del login",
+                HomeSouce.getContainerInventario(driver).isDisplayed());
+    }
 
+    @Then("valido el mensaje de error {string}")
+    public void valido_el_mensaje_de_error(String mensajeEsperado) {
+        String mensajeObtenido = HomeSouce.getMensajeError(driver, mensajeEsperado).getText();
+        Assert.assertEquals("El mensaje de validación no corresponde", mensajeEsperado, mensajeObtenido);
     }
 
 }
