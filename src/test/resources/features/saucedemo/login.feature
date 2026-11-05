@@ -20,3 +20,4 @@ Feature: Ingreso Login SauceDemo
     Given estoy en la web de "https://www.saucedemo.com/"
     When presiono el boton Login
     Then valido el mensaje de error "Epic sadface: Username is required"
+
