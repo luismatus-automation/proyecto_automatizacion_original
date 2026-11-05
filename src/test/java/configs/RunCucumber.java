@@ -11,7 +11,7 @@ import java.io.IOException;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "definitions",
-        tags = "@ejercicio2_CA5",
+        tags = "@inventario_sauce_demo",
         plugin = {"json:src/test/resources/cucumber.json","html:src/test/resources/reportes/cucumber_report.html"}
 )
 public class RunCucumber
