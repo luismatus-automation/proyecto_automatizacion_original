@@ -18,7 +18,7 @@ public class FactoryWebElements {
        WebElement elemento =null;
        try {
            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-           elemento = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+           elemento = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
            return elemento;
        }catch(Exception ex)
        {
