@@ -6,8 +6,8 @@ import utils.FactoryWebElements;
 
 public class ContactDM {
 
-    public static WebElement getTituloModalContacto(WebDriver driver) {
-        return FactoryWebElements.initWithXpath(driver, "//h5[@id='exampleModalLabel']");
+    public static WebElement getTituloModalContacto(WebDriver driver, String titulo) {
+        return FactoryWebElements.initWithXpath(driver, "//a[@class='nav-link' and contains(text(), '"+ titulo +"')]");
     }
 
     public static WebElement getEmailContacto(WebDriver driver) {

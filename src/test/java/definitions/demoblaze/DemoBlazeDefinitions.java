@@ -31,7 +31,7 @@ public class  DemoBlazeDefinitions {
         HomeDM.getMenuNavegacion(driver, opcion).click();
 
         if (opcion.equals("Contact")) {
-            ContactDM.getTituloModalContacto(driver);
+            ContactDM.getTituloModalContacto(driver, opcion);
         }
     }
 
