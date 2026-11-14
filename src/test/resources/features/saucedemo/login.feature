@@ -1,7 +1,7 @@
-@feature_sauce_demo
+@feature_login_saucedemo
 Feature: Ingreso Login SauceDemo
 
-  @testLogin_saucedemo
+  @test_login
   Scenario: Iniciar sesion con credenciales validas
     Given estoy en la web de "https://www.saucedemo.com/"
     When ingreso el username "standard_user"

@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.demoblaze.CarritoCompras;
+import pages.demoblaze.ContactDM;
 import pages.demoblaze.HomeDM;
 import pages.demoblaze.ProductosDM;
 import utils.AceptarAlerta;
@@ -19,10 +20,67 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-public class DemoBlazeDefinitions {
+public class  DemoBlazeDefinitions {
 
     private final WebDriver driver = WebDriverManager.getDriver();
     private WebElement filaProductoEliminada;
+
+    @When("ingreso al menu de navegacion {string}")
+    public void ingreso_al_menu_de_navegacion(String opcion) {
+
+        HomeDM.getMenuNavegacion(driver, opcion).click();
+
+        if (opcion.equals("Contact")) {
+            ContactDM.getTituloModalContacto(driver);
+        }
+    }
+
+    @When("completo el formulario de contacto con los siguientes datos")
+    public void completo_el_formulario_de_contacto_con_los_siguientes_datos(DataTable dataTable) {
+
+        List<Map<String, String>> datos = dataTable.asMaps(String.class, String.class);
+
+        for (Map<String, String> fila : datos) {
+            String campo = fila.get("campo");
+            String valor = fila.get("valor");
+            WebElement elemento;
+
+            switch (campo) {
+                case "Contact Email":
+                    elemento = ContactDM.getEmailContacto(driver);
+                    break;
+                case "Contact Name":
+                    elemento = ContactDM.getNombreContacto(driver);
+                    break;
+                case "Message":
+                    elemento = ContactDM.getMensajeContacto(driver);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Campo de contacto no soportado: " + campo);
+            }
+
+            elemento.clear();
+            elemento.sendKeys(valor);
+        }
+    }
+
+    @When("envio el formulario de contacto")
+    public void envio_el_formulario_de_contacto() {
+
+        ContactDM.getBotonEnviarContacto(driver).click();
+    }
+
+    @Then("valido el mensaje de confirmacion de contacto {string}")
+    public void valido_el_mensaje_de_confirmacion_de_contacto(String mensajeEsperado) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        String mensajeObtenido = wait.until(ExpectedConditions.alertIsPresent()).getText();
+        AceptarAlerta.aceptarAlerta(driver);
+
+        Assert.assertEquals("El mensaje de confirmación de contacto no corresponde",
+                mensajeEsperado, mensajeObtenido);
+
+    }
 
     @Then("valido que existe la categoria de {string}")
     public void valido_que_existe_la_categoria_de(String categoria) {

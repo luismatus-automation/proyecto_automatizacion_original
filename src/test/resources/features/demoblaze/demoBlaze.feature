@@ -196,3 +196,17 @@ Feature: Ejercicios Practicos
       | Samsung galaxy s6 |
       | Nexus 6           |
       | Sony xperia z5    |
+
+#  ---------------------------------------------------------------------------------------------------------------------
+#  Contact
+  @test_contact
+  Scenario: Envio formulario de contacto
+    Given estoy en la web de "https://www.demoblaze.com/"
+    When ingreso al menu de navegacion "Contact"
+    And completo el formulario de contacto con los siguientes datos
+      | campo         | valor                       |
+      | Contact Email | qa.automation@example.com    |
+      | Contact Name  | Ignacio                     |
+      | Message       | Consulta de prueba          |
+    And envio el formulario de contacto
+    Then valido el mensaje de confirmacion de contacto "Thanks for the message!!"

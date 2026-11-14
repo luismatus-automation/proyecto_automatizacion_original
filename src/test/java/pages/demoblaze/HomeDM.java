@@ -34,5 +34,9 @@ public class HomeDM {
         return FactoryWebElements.initWithXpath(driver,"//a[@class='nav-link' and contains(text(), 'Home')]");
     }
 
+    public static WebElement getMenuNavegacion(WebDriver driver, String opcion) {
+        return FactoryWebElements.initWithXpath(driver,
+                "//a[contains(@class, 'nav-link') and normalize-space()='" + opcion + "']");
+    }
 
 }
